@@ -1,0 +1,197 @@
+import java.io.*;
+import java.util.*;
+import java.util.Calendar;
+
+public class ClinicManagement {
+    String did, dname, specilist, appoint, doc_qual;
+    int droom;
+    String pid, pname, disease, sex, admit_status;
+    int age;
+    String sid, sname, desg;
+    int salary;
+ 
+    public static void main (String[]args) {
+        String months[] = {
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec"
+            };
+    	  Calendar calendar = Calendar.getInstance();
+          System.out.println("--------------------------------------------------------------------------------");
+          System.out.println("\n--------------------------------------------------------------------------------");
+          System.out.println("                         * Welcome to TryHard Clinic! *");
+          System.out.println("--------------------------------------------------------------------------------");
+          System.out.print("Date: " + months[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.DATE) + " " + calendar.get(Calendar.YEAR));
+          System.out.println("\t\t\t\t\t\tTime: " + calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND));
+          int count1 = 2, count2 = 2, count3 = 4;
+        class_doctor[] d = new class_doctor[25];
+        class_patient[] p = new class_patient[100];
+        class_staff[] s = new class_staff[100];
+        int i;
+        for (i = 0; i < 25; i++) {
+            d[i] = new class_doctor();
+        }
+        for (i = 0; i < 100; i++) {
+            p[i] = new class_patient();
+        }
+
+        for (i = 0; i < 100; i++) {
+            s[i] = new class_staff();
+        }
+
+        d[0].did = "D01";
+        d[0].dname = "Dr.Rizal";
+        d[0].specilist = "Physician";
+        d[0].appoint = "7-12AM";
+        d[0].doc_qual = "MBBS,MD";
+        d[0].droom = 01;
+        d[1].did = "D02";
+        d[1].dname = "Dr.Aguinaldo";
+        d[1].specilist = "Physician";
+        d[1].appoint = "12-7PM";
+        d[1].doc_qual = "MBBS,MD";
+        d[1].droom = 02;
+        
+        p[0].pid = "P1";
+        p[0].pname = "Riki";
+        p[0].disease = "Cold";
+        p[0].sex = "Male";
+        p[0].age = 23;
+        p[1].pid = "P2";
+        p[1].pname = "Rexar";
+        p[1].disease = "High Fever";
+        p[1].sex = "Male";
+        p[1].age = 45;
+
+        s[0].sid = "S01";
+        s[0].sname = "Angelo\t";
+        s[0].desg = "Nurse";
+        s[0].sex = "Male\t";
+        s[0].salary = 5000;
+        s[1].sid = "S02";
+        s[1].sname = "Angelica";
+        s[1].desg = "Nurse";
+        s[1].sex = "Female\t";
+        s[1].salary = 5000;
+        s[2].sid = "S03";
+        s[2].sname = "Kyle\t";
+        s[2].desg = "Nurse";
+        s[2].sex = "Male\t";
+        s[2].salary = 5000;
+        s[3].sid = "S04";
+        s[3].sname = "Kylie\t";
+        s[3].desg = "Nurse";
+        s[3].sex = "Female\t";
+        s[3].salary = 5000;
+
+        Scanner input = new Scanner(System.in);
+        int choice, j, c1, status = 1, s1 = 1, s2 = 1, s3 = 1;
+        while (status == 1) {
+            System.out.println("\n                                    MAIN MENU");
+            System.out.println("-----------------------------------------------------------------------------------");
+            System.out.println("        1.Doctors               2. Patients                 3. Staff ");
+            System.out.println("-----------------------------------------------------------------------------------");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1: {
+                    System.out.println("--------------------------------------------------------------------------------");
+                    System.out.println("                      *DOCTOR'S SECTION*");
+                    System.out.println("--------------------------------------------------------------------------------");
+                    s1 = 1;
+                    while (s1 == 1) {
+                        System.out.println("1.Add New Entry\n2.Existing Doctors List");
+                        c1 = input.nextInt();
+                        switch (c1) {
+                            case 1: {
+                                d[count1].new_doctor();
+                                count1++;
+                                break;
+                            }
+                            case 2: {
+                                System.out.println("--------------------------------------------------------------------------------");
+                                System.out.println("--------------------------------------------------------------------------------");
+                                for (j = 0; j < count1; j++) {
+                                    d[j].doctor_info();
+                                }
+                                break;
+                            }
+                        }
+                        System.out.println("\nReturn to Back Press 1 and for Main Menu Press 0");
+                        s1 = input.nextInt();
+                    }
+                    break;
+                }
+                case 2: {
+                    System.out.println("--------------------------------------------------------------------------------");
+                    System.out.println("                     *PATIENT SECTION*");
+                    System.out.println("--------------------------------------------------------------------------------");
+                    s2 = 1;
+                    while (s2 == 1) {
+                        System.out.println("1.Add New Entry\n2.Existing Patients List");
+                        c1 = input.nextInt();
+                        switch (c1) {
+                            case 1: {
+                                p[count2].new_patient();
+                                count2++;
+                                break;
+                            }
+                            case 2: {
+                                System.out.println("--------------------------------------------------------------------------------");
+                                System.out.println("--------------------------------------------------------------------------------");
+                                for (j = 0; j < count2; j++) {
+                                    p[j].patient_info();
+                                }
+                                break;
+                            }
+                        }
+                        System.out.println("\nReturn to Back Press 1 and for Main Menu Press 0");
+                        s2 = input.nextInt();
+                    }
+                    break;
+                }
+                case 3: {
+                    s3 = 1;
+                    System.out.println("--------------------------------------------------------------------------------");
+                    System.out.println("                       *NURSE'S SECTION*");
+                    System.out.println("--------------------------------------------------------------------------------");
+                    while (s3 == 1) {
+                        System.out.println("1.Add New Entry \n2.Existing Nurses List");
+                        c1 = input.nextInt();
+                        switch (c1) {
+                            case 1: {
+                                s[count3].new_staff();
+                                count3++;
+                                break;
+                            }
+                            case 2: {
+                                System.out.println("--------------------------------------------------------------------------------");
+                                System.out.println("--------------------------------------------------------------------------------");
+                                for (j = 0; j < count3; j++) {
+                                    s[j].staff_info();
+                                }
+                            }
+                           
+                        }
+                         break;
+
+                    }
+                    System.out.println("\nReturn to Back Press 1 and for Main Menu Press 0");
+                    s3 = input.nextInt();
+                }
+                break;
+            }
+
+        }
+        System.out.println("\nReturn to MAIN MENU Press 1");
+        status = input.nextInt();
+    }
+}
